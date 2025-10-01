@@ -24,7 +24,6 @@ namespace TestVetores
         public void TestRemoverReprovar()
         {
             var produto = new Vetores("", 0);
-            
         }
 
         [Fact]
@@ -33,21 +32,6 @@ namespace TestVetores
             var produto = new Vetores("", 0);
             
         }
-        
-        [Fact]
-        public void TestLimparListaReprovar()
-        {
-            var produto = new Vetores("", 0);
-            
-        }
-
-        [Fact]
-        public void TestLimparListaAprovar()
-        {
-            var produto = new Vetores("", 0);
-            
-        }
-
 
     }
 }
