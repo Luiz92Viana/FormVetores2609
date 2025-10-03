@@ -5,33 +5,19 @@ namespace TestVetores
     public class TestProdutos
     {
         [Fact]
-        public void TestAdicionarReprovar()
+        public void TestAdicionarAprovar()
         {
-            var produto = new Vetores("",0);
-            string lista = produto.Adicionar("maçã", 55);
-            Assert.Equal("maçã" + 33,"maçã" + 55 );
+            var produtoF = new Vetores(new List<string>());
+            produtoF.Adicionar("Arroz - R$45");
+            Assert.Equal("Arroz - R$45", "Arroz - R$45");
         }
         
         [Fact]
-        public void TestAdicionarAprovar()
+        public void TestAdicionarReprovar()
         {
-            var produto = new Vetores("", 0);
-            string lista = produto.Adicionar("maçã", 55);
-            Assert.Equal("maçã" + 55, "maçã" + 55);
+            var produtoF = new Vetores(new List<string>());
+            produtoF.Adicionar("Arroz - R$45");
+            Assert.Equal("Arroz - R$45", "Feijão - R$65");
         }
-
-        [Fact]
-        public void TestRemoverReprovar()
-        {
-            var produto = new Vetores("", 0);
-        }
-
-        [Fact]
-        public void TestRemoverAprovar()
-        {
-            var produto = new Vetores("", 0);
-            
-        }
-
     }
 }

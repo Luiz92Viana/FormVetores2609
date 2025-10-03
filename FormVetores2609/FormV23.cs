@@ -13,15 +13,16 @@ namespace FormVetores2609
 {
     public partial class FormV23 : Form
     {
-        private Vetores _produtos = new Vetores("", 0);
         public FormV23()
         {
             InitializeComponent();
         }
 
+        private Vetores _gestaoProdutos = new Vetores(new List<string>{""});
+    
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
-            string produto = "";
+            string produtoF = "";
             double preco = 0;
 
             if (tbxPreco.Text == "" || tbxProduto.Text == "") {
@@ -29,11 +30,13 @@ namespace FormVetores2609
             }
             else
             {
-                produto = tbxProduto.Text;
+                string produtoN = tbxProduto.Text;
                 preco = Convert.ToDouble(tbxPreco.Text);
-                string resultado = _produtos.Adicionar(produto, preco);
-                MessageBox.Show($"O produto {produto} foi adicionado na lista com o preço de R${preco}.", "Notificação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                lbxProdutos.Items.Add(resultado);
+                produtoF = ($"{produtoN} - R${preco}");
+                preco = Convert.ToDouble(tbxPreco.Text);
+                _gestaoProdutos.Adicionar(produtoF);
+                MessageBox.Show($"O produto {produtoN} foi adicionado na lista com o preço de R${preco}.", "Notificação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lbxProdutos.Items.Add(produtoF);
                 tbxPreco.Clear();
                 tbxProduto.Clear();
             }
@@ -42,13 +45,14 @@ namespace FormVetores2609
         private void btnRemover_Click(object sender, EventArgs e)
         {
             if(lbxProdutos.SelectedItem != null) {
-                string produtoF = lbxProdutos.SelectedItem.ToString();
-                lbxProdutos.Items.Remove(produtoF);
-                MessageBox.Show($"O produto {produtoF} foi removido da lista com sucesso.", "Notificação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                string produtoR = lbxProdutos.SelectedItem.ToString();
+                _gestaoProdutos.Remover(produtoR);
+                lbxProdutos.Items.Remove(produtoR);
+                MessageBox.Show($"O produto {produtoR} foi removido da lista com sucesso.", "Notificação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Selecione um produto para remover.", "Notifiação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Selecione um produto para remover.", "Notificação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -59,6 +63,7 @@ namespace FormVetores2609
             if(respotaConfirmacao == DialogResult.Yes)
             {
                 lbxProdutos.Items.Clear();
+                _gestaoProdutos.LimparLista();
                 MessageBox.Show("A lista de produtos foi apagada completamente.", "Notificação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

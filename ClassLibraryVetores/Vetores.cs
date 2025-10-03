@@ -8,21 +8,29 @@ namespace ClassLibraryVetores
 {
     public class Vetores
     {
-        public int tamanhoLista {  get; set; }
-        public string Produtos { get; set; }
-        
-        public double Preco { get; set;}
+        private List<string> _produtos = new List<string>();
 
-        public Vetores(string produtos, double preco)
+        // public string Produtos { get; set; }
+        
+        // public double Preco { get; set;}
+
+        public Vetores(List<string> produtosF)
         {
-            this.Produtos = produtos;
-            this.Preco = preco;
-            this.tamanhoLista = 0;
+            this._produtos = produtosF;
         }
-        public string Adicionar(string produtos, double preco)
+        public void Adicionar(string produtosF)
         {
-            return ($"{produtos} - R${preco}");
+            _produtos.Add(produtosF);
         }
+
+        public void Remover(string produtosF)
+        {
+            _produtos.Remove(produtosF);
+        }
+
+        public List<string> LimparLista() =>
+            new List<string>(_produtos);
+        
     }
 
 }
